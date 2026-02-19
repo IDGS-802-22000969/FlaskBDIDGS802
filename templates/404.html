@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lamp Error Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: none;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: #181828;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .starsec, .starthird, .starfourth, .starfifth {
+            content: " ";
+            position: absolute;
+            background: transparent;
+            box-shadow: 571px 173px #00BCD4, 1732px 143px #00BCD4, 1745px 454px #FF5722, 234px 784px #00BCD4, 1793px 1123px #FF9800, 1076px 504px #03A9F4, 633px 601px #FF5722, 350px 630px #FFEB3B, 1164px 782px #00BCD4, 76px 690px #3F51B5, 1825px 701px #CDDC39, 1646px 578px #FFEB3B, 544px 293px #2196F3, 445px 1061px #673AB7, 928px 47px #00BCD4, 168px 1410px #8BC34A, 777px 782px #9C27B0, 1235px 1941px #9C27B0, 104px 1690px #8BC34A, 1167px 1338px #E91E63, 345px 1652px #009688, 1682px 1196px #F44336, 1995px 494px #8BC34A, 428px 798px #FF5722, 340px 1623px #F44336, 605px 349px #9C27B0, 1339px 1344px #673AB7, 1102px 1745px #3F51B5, 1592px 1676px #2196F3, 419px 1024px #FF9800, 630px 1033px #4CAF50, 1995px 1644px #00BCD4, 1092px 712px #9C27B0, 1355px 606px #F44336, 622px 1881px #CDDC39, 1481px 621px #9E9E9E, 19px 1348px #8BC34A, 864px 1780px #E91E63, 442px 1136px #2196F3, 67px 712px #FF5722, 89px 1406px #F44336, 275px 321px #009688, 592px 630px #E91E63, 1012px 1690px #9C27B0, 1749px 23px #673AB7, 94px 1542px #FFEB3B, 1201px 1657px #3F51B5, 1505px 692px #2196F3, 1799px 601px #03A9F4, 656px 811px #00BCD4, 701px 597px #00BCD4, 1202px 46px #FF5722, 890px 569px #FF5722, 1613px 813px #2196F3, 223px 252px #FF9800, 983px 1093px #F44336, 726px 1029px #FFC107, 1764px 778px #CDDC39, 622px 1643px #F44336, 174px 1559px #673AB7, 212px 517px #00BCD4, 340px 505px #FFF, 1700px 39px #FFF, 1768px 516px #F44336, 849px 391px #FF9800, 228px 1824px #FFF, 1119px 1680px #FFC107, 812px 1480px #3F51B5, 1438px 1585px #CDDC39, 137px 1397px #FFF, 1080px 456px #673AB7, 1208px 1437px #03A9F4, 857px 281px #F44336, 1254px 1306px #CDDC39, 987px 990px #4CAF50, 1655px 911px #00BCD4, 1102px 1216px #FF5722, 1807px 1044px #FFF, 660px 435px #03A9F4, 299px 678px #4CAF50, 1193px 115px #FF9800, 918px 290px #CDDC39, 1447px 1422px #FFEB3B, 91px 1273px #9C27B0, 108px 223px #FFEB3B, 146px 754px #00BCD4, 461px 1446px #FF5722, 1004px 391px #673AB7, 1529px 516px #F44336, 1206px 845px #CDDC39, 347px 583px #009688, 1102px 1332px #F44336, 709px 1756px #00BCD4, 1972px 248px #FFF, 1669px 1344px #FF5722, 1132px 406px #F44336, 320px 1076px #CDDC39, 126px 943px #FFEB3B, 263px 604px #FF5722, 1546px 692px #F44336;
+        }
+
+        .starsec { width: 3px; height: 3px; animation: animStar 150s linear infinite; }
+        .starthird { width: 3px; height: 3px; animation: animStar 10s linear infinite; }
+        .starfourth { width: 2px; height: 2px; animation: animStar 50s linear infinite; }
+        .starfifth { width: 1px; height: 1px; animation: animStar 80s linear infinite; }
+
+        @keyframes animStar {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-2000px); }
+        }
+
+        .lamp__wrap {
+            position: relative;
+            z-index: 2;
+        }
+
+        .lamp {
+            position: absolute;
+            left: 0; right: 0; top: 0;
+            margin: 0 auto;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-origin: center top;
+            animation: move 5.1s infinite cubic-bezier(0.6, 0, 0.38, 1);
+        }
+
+        @keyframes move {
+            0% { transform: rotate(40deg); }
+            50% { transform: rotate(-40deg); }
+            100% { transform: rotate(40deg); }
+        }
+
+        .cable {
+            width: 8px;
+            height: 248px;
+            background-image: linear-gradient(rgb(32 148 218 / 70%), rgb(193 65 25));
+        }
+
+        .cover {
+            width: 200px;
+            height: 80px;
+            background: #0bd5e8;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            position: relative;
+            z-index: 200;
+        }
+
+        .in-cover {
+            width: 100%;
+            max-width: 200px;
+            height: 20px;
+            border-radius: 100%;
+            background: #08ffff;
+            position: absolute;
+            left: 0; right: 0; margin: 0 auto;
+            bottom: -9px;
+            z-index: 100;
+        }
+
+        .bulb {
+            width: 50px;
+            height: 50px;
+            background-color: #08fffa;
+            border-radius: 50%;
+            position: absolute;
+            left: 0; right: 0; bottom: -20px; margin: 0 auto;
+            box-shadow: 0 0 25px 7px rgb(127 255 255 / 80%), 0 0 64px 47px rgba(0,255,255,0.5);
+        }
+
+        .light {
+            width: 200px;
+            height: 0px;
+            border-bottom: 900px solid rgb(44 255 255 / 24%);
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            position: absolute;
+            left: 0; right: 0; top: 270px; margin: 0 auto;
+            z-index: 1;
+            border-radius: 90px 90px 0px 0px;
+        }
+
+        .error {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        .message__title {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 5.6rem;
+            padding-bottom: 20px;
+            color: #fff; 
+        }
+
+        .message__text {
+            line-height: 1.6;
+            font-size: 18px;
+            padding: 0 20px;
+            max-width: 680px;
+            margin: 0 auto;
+            color: #bcecf2;
+        }
+
+        .e-nav__link {
+            height: 45px;
+            line-height: 45px;
+            width: 170px;
+            display: inline-block;
+            margin-top: 40px;
+            border: 1px solid #fff;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: .1rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .e-nav__link:hover {
+            background: #fff;
+            color: #181828;
+        }
+
+        @media (max-width: 1400px) {
+            .message__title { font-size: 3.5rem; }
+            .lamp { zoom: 0.5; }
+        }
+
+        @media (max-width: 750px) {
+            .message__title { font-size: 30px; }
+            .error { padding-top: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/index" target="_blank">
+        <header class="top-header"></header>
+
+        <div>
+            <div class="starsec"></div>
+            <div class="starthird"></div>
+            <div class="starfourth"></div>
+            <div class="starfifth"></div>
+        </div>
+
+        <div class="lamp__wrap">
+            <div class="lamp">
+                <div class="cable"></div>
+                <div class="cover"></div>
+                <div class="in-cover">
+                    <div class="bulb"></div>
+                </div>
+                <div class="light"></div>
+            </div>
+        </div>
+
+        <section class="error">
+            <div class="error__content">
+                <div class="error__message message">
+                    <h1 class="message__title">Page Not Found</h1>
+                    <p class="message__text">We're sorry, the page you were looking for isn't found here. The link you followed may either be broken or no longer exists.</p>
+                </div>
+                <div class="error__nav e-nav">
+                    <span class="e-nav__link">Go Back Home</span>
+                </div>
+            </div>
+        </section>
+    </a>
+
+</body>
+</html>
