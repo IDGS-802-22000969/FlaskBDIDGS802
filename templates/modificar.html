@@ -1,9 +1,13 @@
 {%extends "layout.html" %} {% block container %} {%import "_macros.html" as
 macros %}
-
+<div class="py-32 relative overflow-x-auto sm:round"
 <form action" " method="POST" novalidate class="max-w-sm mx-auto">
 {{form.csrf_token}}
 <input type="hidden" name="csrf_token" value="{{ csrf_token()}}"
+
+{{macros.camponuevo(form. nombre, class="block py-2.5 px-0 w-full text-sm 
+text-heading bg-transparent border-0 border-b-2 
+border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer")}}
 
 {{macros.camponuevo(form. nombre, class="block py-2.5 px-0 w-full text-sm 
 text-heading bg-transparent border-0 border-b-2 

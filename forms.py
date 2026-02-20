@@ -16,9 +16,6 @@ class UserForm(Form):
     apaterno = StringField('Apaterno', [
         validators.DataRequired(message="El campo es requerido")])
     
-    amaterno= StringField('Amaterno', [
-        validators.DataRequired(message="El campo es requerido")])
-    
     correo = StringField('Correo', [
         validators.DataRequired(message="El campo es requerido")])
 
