@@ -17,5 +17,19 @@ class UserForm(FlaskForm):
     email = EmailField('Email', [
         validators.DataRequired(message="El campo es requerido")])
     
-    telefono = EmailField('Telefono', [
-        validators.DataRequired(message="El campo es requerido")])
+    telefono = StringField('Telefono', [validators.DataRequired()]) 
+
+class MaestroForm(FlaskForm):
+    matricula = IntegerField('Matricula', [validators.Optional()])
+   
+    nombre = StringField('Nombre', [
+        validators.DataRequired(message="El nombre es requerido")])
+
+    apellidos = StringField('Apellidos', [
+        validators.DataRequired(message="Los apellidos son requeridos")])
+
+    especialidad = StringField('Especialidad', [
+        validators.DataRequired(message="La especialidad es requerida")])
+
+    email = EmailField('Email', [
+        validators.DataRequired(message="El email es requerido")])

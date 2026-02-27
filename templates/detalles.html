@@ -1,40 +1,20 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 {% block container %}
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-    {% for alum in alumnos %}
-    <div class="relative bg-neutral-primary-soft max-w-xs w-full p-6 border border-default rounded-base shadow-xs">
-        <button id="dropdownButton-{{ alum.id }}" data-dropdown-toggle="dropdown-{{ alum.id }}" class="absolute top-2 end-2 text-body hover:text-heading bg-neutral-primary-soft border border-transparent hover:bg-neutral-tertiary focus:ring-4 focus:ring-neutral-tertiary rounded-base p-1.5 focus:outline-none" type="button">
-            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="M6 12h.01m6 0h.01m5.99 0h.01"/></svg>
-        </button>
-        
-        <div id="dropdown-{{ alum.id }}" class="z-10 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-36 hidden">
-            <ul class="p-2 text-sm text-body font-medium">
-                <li>
-                    <a href="{{ url_for('modificar', id=alum.id) }}" class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md">Editar</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('detalles', id=alum.id) }}" class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md">Ver Detalles</a>
-                </li>
-            </ul>
-        </div>
-
+<div class="flex justify-center p-6">
+    <div class="bg-neutral-primary-soft max-w-xs w-full p-6 border border-default rounded-base shadow-xs">
         <div class="flex flex-col items-center">
-            <img class="w-24 h-24 mb-6 rounded-full border border-brand" src="https://ui-avatars.com/api/?name={{ alum.nombre }}+{{ alum.apaterno }}&background=random" alt="{{ alum.nombre }}"/>
-            <h5 class="mb-0.5 text-xl font-semibold">{{ alum.nombre }} {{ alum.apaterno }}</h5>
-            <span class="text-sm text-body">{{ alum.email }}</span>
-            
-            <div class="flex mt-4 md:mt-6 gap-4">
-                <a href="{{ url_for('modificar', id=alum.id) }}" class="inline-flex items-center text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-4 py-2.5">
-                    Modificar
-                </a>
-                <a href="{{ url_for('detalles', id=alum.id) }}" class="inline-flex items-center text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary font-medium rounded-base text-sm px-4 py-2.5">
-                    Detalles
-                </a>
-            </div>
+            <img class="w-24 h-24 mb-6 rounded-full border border-brand"
+                 src="https://ui-avatars.com/api/?name={{ nombre }}+{{ apaterno }}&background=random">
+            <h5 class="mb-0.5 text-xl font-semibold">
+                {{ nombre }} {{ apaterno }}
+            </h5>
+            <span class="text-sm text-body">{{ email }}</span>
+            <a href="{{ url_for('index') }}"
+               class="mt-4 text-white bg-brand px-4 py-2 rounded-base">
+               Regresar
+            </a>
         </div>
     </div>
-    {% endfor %}
 </div>
-
 {% endblock %}

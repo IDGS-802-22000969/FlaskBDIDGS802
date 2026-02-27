@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<div class="py-10">
+    <div class="max-w-sm mx-auto mb-6 text-center">
+        <h1 class="text-2xl font-bold text-heading">Registro de Maestro</h1>
+        <p class="text-sm text-body">Formulario para agregar un nuevo maestro.</p>
+    </div>
+  <form action="/maestroNuevo" method="POST" novalidate class="max-w-sm mx-auto">
+        {{ form.csrf_token }}
+
+     <div class="mb-5">
+            <label for="matricula" class="block mb-2.5 text-sm font-medium text-heading">Matricula</label>
+            {{ macros.campoNuevo(form.matricula, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+        </div>
+
+          <div class="mb-5">
+            <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
+            {{ macros.campoNuevo(form.nombre, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+        </div>
+
+          <div class="mb-5">
+            <label for="apellidos" class="block mb-2.5 text-sm font-medium text-heading">Apellidos</label>
+            {{ macros.campoNuevo(form.apellidos, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+        </div>
+
+          <div class="mb-5">
+            <label for="especialidad" class="block mb-2.5 text-sm font-medium text-heading">Especialidad</label>
+            {{ macros.campoNuevo(form.especialidad, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+        </div>
+
+         <div class="mb-5">
+            <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Email</label>
+            {{ macros.campoNuevo(form.email, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+        </div>
+
+        <button type="submit"
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition">
+            Registrar Maestro
+        </button>
+
+    </form>
+</div>
+
+{% endblock %}

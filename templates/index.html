@@ -1,85 +1,64 @@
 {% extends "layout.html" %} 
 {% block container %} 
-{% import "_macros.html" as macros %}
 
-<div class="py-10">
-    <div class="max-w-sm mx-auto mb-6">
-        <h2 class="text-2xl font-bold text-heading">Nuevo Alumno</h2>
-        <p class="text-sm text-body">Ingresa los datos del estudiante para el registro.</p>
+<div class="py-10 max-w-6xl mx-auto px-4">
+    
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h2 class="text-3xl font-extrabold text-gray-900">Gestión de Alumnos</h2>
+            <p class="text-sm text-gray-500">Listado oficial de alumnos de la UTL.</p>
+        </div>
+        <a href="{{ url_for('alumno') }}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-md transition-all transform hover:scale-105">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Nuevo Estudiante
+        </a>
     </div>
-
-    <form action="/Alumnos" method="POST" novalidate class="max-w-sm mx-auto">
-        {{form.csrf_token}}
-        <div class="mb-5">
-            <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
-            {{ macros.campoNuevo(form.nombre, placeholder="Alicia", 
-            class="bg-neutral-secondary-medium border border-default-medium text-heading 
-            text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 
-            shadow-xs placeholder:text-body") }}
-        </div>
-
-        <div class="mb-5">
-            <label for="apaterno" class="block mb-2.5 text-sm font-medium text-heading">Apellido Paterno</label>
-            {{ macros.campoNuevo(form.apaterno, placeholder="Lopez", 
-            class="bg-neutral-secondary-medium border border-default-medium text-heading 
-            text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 
-            shadow-xs placeholder:text-body") }}
-        </div>
-
-        <div class="mb-5">
-            <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Correo Electrónico</label>
-            {{ macros.campoNuevo(form.email, placeholder="123@gmail.com", 
-            class="bg-neutral-secondary-medium border border-default-medium text-heading 
-            text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 
-            shadow-xs placeholder:text-body") }}
-        </div>
-
-          <div class="mb-5">
-            <label for="telefono" class="block mb-2.5 text-sm font-medium text-heading">Telefono </label>
-            {{ macros.campoNuevo(form.telefono, placeholder="123456", 
-            class="bg-neutral-secondary-medium border border-default-medium text-heading 
-            text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 
-            shadow-xs placeholder:text-body") }}
-        </div>
-
-        <button type="submit" class="w-full text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none transition-colors">
-            Registro
-        </button>
-    </form>
-
-    <div class="max-w-4xl mx-auto mt-10">
-        <h2 class="text-xl font-bold text-heading mb-4">Alumnos Registrados</h2>
-
-        <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
-            <table class="w-full text-sm text-left rtl:text-right text-body">
-                <thead class="bg-neutral-secondary-soft border-b border-default">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 font-medium">Nombre</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Apellido</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Correo</th>
-                          <th scope="col" class="px-6 py-3 font-medium"> Telefono</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for alum in alumnos %}
-                    <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default last:border-0">
-                        <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">{{ alum.nombre }}</th>
-                        <td class="px-6 py-4">{{ alum.apaterno }}</td>
-                        <td class="px-6 py-4">{{ alum.email }}</td>
-                        <td class="px-6 py-4 flex items-center gap-2">
-                            <a href="{{ url_for('detalles', id=alum.id) }}" class="font-medium text-fg-brand hover:underline">Ver</a>
-                            <span class="text-body">|</span>
-                            <a href="{{ url_for('modificar', id=alum.id) }}" class="font-medium text-fg-brand hover:underline">Modificar</a>
-                            <a href="{{ url_for('eliminar', id=alum.id) }}" class="font-medium text-fg-brand hover:underline">Eliminar</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <table class="w-full text-sm text-left text-gray-600">
+            <thead class="bg-gray-50 text-gray-700 border-b border-gray-200 uppercase text-xs">
+                <tr>
+                    <th class="px-6 py-4 font-bold">Nombre Completo</th>
+                    <th class="px-6 py-4 font-bold">Correo Electrónico</th>
+                    <th class="px-6 py-4 font-bold text-center">Teléfono</th> <th class="px-6 py-4 font-bold text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                {% for alum in alumnos %}
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-6 py-4 font-medium text-gray-900">
+                        {{ alum.nombre }} {{ alum.apaterno }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ alum.email }}
+                    </td>
+                    <td class="px-6 py-4 text-center font-medium text-gray-700">
+                        {{ alum.telefono }}
+                    </td>
+                    <td class="px-6 py-4">
+                       <div class="flex justify-center gap-3">
+                         <a href="{{ url_for('detalles', id=alum.id) }}"
+                          class="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700 transition">
+                           Ver</a>
+                        <a href="{{ url_for('modificar', id=alum.id) }}"
+                            class="px-4 py-2 text-sm font-semibold text-white bg-amber-500 rounded-lg shadow hover:bg-amber-600 transition">
+                              Modificar </a>
+                        <a href="{{ url_for('eliminar', id=alum.id) }}"
+                             class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg shadow hover:bg-red-700 transition">
+                                Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
 </div>
 
 {% endblock %}

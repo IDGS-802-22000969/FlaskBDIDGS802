@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="py-10 max-w-6xl mx-auto px-4">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h2 class="text-3xl font-extrabold text-gray-900">Gestión de Maestros</h2>
+            <p class="text-sm text-gray-500">Listado oficial de maestros.</p>
+        </div>
+        <a href="{{ url_for('maestros.maestroNuevo') }}"
+            class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-lg shadow-md transition-all transform hover:scale-105">
+            Nuevo Maestro
+        </a>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <table class="w-full text-sm text-left text-gray-600">
+            <thead class="bg-gray-50 text-gray-700 border-b border-gray-200 uppercase text-xs">
+                <tr>
+                    <th class="px-6 py-4 font-bold">Nombre</th>
+                    <th class="px-6 py-4 font-bold">Apellidos</th>
+                    <th class="px-6 py-4 font-bold">Especialidad</th>
+                    <th class="px-6 py-4 font-bold">Email</th>
+                    <th class="px-6 py-4 font-bold text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                {% for maestro in maestros %}
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-6 py-4">{{ maestro.nombre }}</td>
+                    <td class="px-6 py-4">{{ maestro.apellidos }}</td>
+                    <td class="px-6 py-4">{{ maestro.especialidad }}</td>
+                    <td class="px-6 py-4">{{ maestro.email }}</td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-3">
+
+                            <a href="{{ url_for('maestros.maestrosDetalles', matricula=maestro.matricula) }}"
+                                class="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700">
+                                Ver
+                            </a>
+
+                            <a href="{{ url_for('maestros.maestrosModificar', matricula=maestro.matricula) }}"
+                                class="px-4 py-2 text-sm font-semibold text-white bg-amber-500 rounded-lg shadow hover:bg-amber-600">
+                                Modificar
+                            </a>
+
+                            <a href="{{ url_for('maestros.maestrosEliminar', matricula=maestro.matricula) }}"
+                                class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg shadow hover:bg-red-700">
+                                Eliminar
+                            </a>
+
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="px-6 py-10 text-center text-gray-400 italic">
+                        No hay maestros registrados
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

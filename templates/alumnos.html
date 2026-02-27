@@ -7,46 +7,36 @@
         <h1 class="text-2xl font-bold text-heading">Registro de Alumno</h1>
         <p class="text-sm text-body">Formulario de estudiante.</p>
     </div>
-
     <form action="/Alumnos" method="POST" novalidate class="max-w-sm mx-auto">
         {{ form.csrf_token }}
-        
         <div class="mb-5">
             <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
-             {{ macros.campoNuevo(form.nombre, 
-            class="bg-neutral-secondary-medium border 
-            border-default-medium text-heading text-sm rounded-base 
-            focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs 
-            placeholder:text-body")  }}
+            {{ macros.campoNuevo(form.nombre, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
         </div>
 
         <div class="mb-5">
             <label for="apaterno" class="block mb-2.5 text-sm font-medium text-heading">Apellido Paterno</label>
-             {{ macros.campoNuevo(form.apaterno, 
-            class="bg-neutral-secondary-medium border 
-            border-default-medium text-heading text-sm rounded-base 
-            focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs 
-            placeholder:text-body")  }}
+            {{ macros.campoNuevo(form.apaterno, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
         </div>
 
         <div class="mb-5">
             <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Email</label>
-             {{ macros.campoNuevo(form.email, 
-            class="bg-neutral-secondary-medium border 
-            border-default-medium text-heading text-sm rounded-base 
-            focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs 
-            placeholder:text-body")  }}
+            {{ macros.campoNuevo(form.email, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+        </div>
 
-            <div class="mb-5">
-            <label for="telefono "class="block mb-2.5 text-sm font-medium text-heading">Telefono</label>
-             {{ macros.campoNuevo(form.telefono
-            class="bg-neutral-secondary-medium border 
-            border-default-medium text-heading text-sm rounded-base 
-            focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs 
-            placeholder:text-body")  }}
-
-        <button type="submit" class="w-full text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none transition-all">
-        </button>
+        <div class="mb-5">
+            <label for="telefono" class="block mb-2.5 text-sm font-medium text-heading">Teléfono</label>
+            {{ macros.campoNuevo(form.telefono, 
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
+        </div>
+         <div class="mt-8">
+           <button type="submit" style="background-color: #4f46e5; display: block; visibility: visible;" class="w-full text-white font-bold rounded-lg text-sm px-4 py-3">
+    REGISTRAR ESTUDIANTE
+</button>
+        </div>
     </form>
 </div>
 

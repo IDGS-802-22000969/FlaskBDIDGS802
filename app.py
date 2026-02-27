@@ -3,11 +3,13 @@ from flask_wtf.csrf import CSRFProtect
 from config import DevelopmentConfig
 import forms
 from models import db, Alumnos
+from maestros import maestros
+from maestros.routes import maestros
 from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
-
+app.register_blueprint(maestros)
 
 db.init_app(app)
 migrate=Migrate(app, db)
@@ -20,6 +22,11 @@ def index():
     alumnos = Alumnos.query.all()
     return render_template("index.html", alumnos=alumnos, form=form)
 
+@app.route("/alumnoTabla")
+def alumnoTabla():
+    alumnos = Alumnos.query.all()
+    return render_template("index.html", alumnos=alumnos)
+
 @app.route("/Alumnos", methods=['GET', 'POST'])
 def alumno():
     create_form = forms.UserForm(request.form)
@@ -27,7 +34,8 @@ def alumno():
         alum = Alumnos(
             nombre=create_form.nombre.data,
             apaterno=create_form.apaterno.data,
-            email=create_form.email.data
+            email=create_form.email.data,
+            telefono=create_form.telefono.data
         )
         db.session.add(alum)
         db.session.commit() 
@@ -35,11 +43,18 @@ def alumno():
     
     return render_template("alumnos.html", form=create_form)
 
-@app.route("/detalles", methods=['GET'])
-def detalles(): 
-    id = request.args.get('id')
-    alum1 = Alumnos.query.get_or_404(id)
-    return render_template("detalles.html", alumno=alum1)
+@app.route('/detalles', methods=['GET', 'POST'])
+def detalles():
+    alumno_class = forms.UserForm(request.form)
+    if request.method == 'GET':
+        id = request.args.get('id')
+        alumn1 = db.session.query(Alumnos).filter(Alumnos.id == id).first()
+        if alumn1:
+            nombre = alumn1.nombre
+            apaterno = alumn1.apaterno
+            email = alumn1.email
+            telefono = alumn1.telefono
+    return render_template("detalles.html", nombre=nombre, apaterno=apaterno, email=email, telefono=telefono)
 
 @app.route("/modificar", methods=['GET', 'POST'])
 def modificar():
@@ -57,17 +72,6 @@ def modificar():
         
     return render_template("modificar.html", form=create_form)
 
-@app.route('/elimin', methods=['GET', 'POST'])
-def elimin():
-            id = request.args.get('id')
-            alum1 = Alumnos.query.get(id)
-            create_form = forms.UserForm(request.form, obj=alum1)
-            if request.method == 'POST':
-                 db.session.delete(alum1)
-                 db.session.commit()
-            return redirect(url_for('index'))
-            create_form = forms.UserForm(obj=alum1)
-            return render_template("eliminar.html", form=create_form, alumno=alum1)
 
 @app.route("/eliminar", methods=['GET', 'POST']) 
 def eliminar():
