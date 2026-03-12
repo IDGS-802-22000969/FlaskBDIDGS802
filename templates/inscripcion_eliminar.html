@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<div class="py-10 relative overflow-x-auto sm:rounded-lg">
+
+    <form action="{{ url_for('inscripciones.inscripcionEliminar', alumno_id=alumno.id, curso_id=curso.id) }}" 
+        method="POST" class="max-w-md mx-auto">
+        
+        {{ form.csrf_token }}
+
+        <h1 class="text-2xl font-bold text-heading mb-8 text-center">
+            Eliminar Inscripción
+        </h1>
+
+        <div class="relative z-0 w-full mb-6 group">
+            <label class="block text-xs text-gray-400 uppercase font-bold">Alumno</label>
+            <input type="text" value="{{ alumno.nombre }} {{ alumno.apaterno }}" 
+                class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium" 
+                readonly>
+        </div>
+
+        <div class="relative z-0 w-full mb-6 group">
+            <label class="block text-xs text-gray-400 uppercase font-bold">Materia / Curso</label>
+            <input type="text" value="{{ curso.nombre }}" 
+                class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium" 
+                readonly>
+        </div>
+
+        <div class="relative z-0 w-full mb-6 group">
+            <label class="block text-xs text-gray-400 uppercase font-bold">Maestro Titular</label>
+            <input type="text" value="{{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}" 
+                class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium" 
+                readonly>
+        </div>
+
+        <div class="mb-6">
+            <p class="text-sm text-center text-red-500 italic">
+                ¿Estás seguro de que deseas dar de baja a este alumno?
+            </p>
+        </div>
+
+        <button type="submit"
+            class="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-200">
+            Confirmar Baja (Eliminar)
+        </button>
+        
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('inscripciones.inscripcionesTabla') }}" class="text-sm text-gray-500 hover:underline">
+                Cancelar y regresar
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

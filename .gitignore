@@ -1,4 +1,6 @@
-.env
-node_modules
-static
-migrations
+.env/
+node_modules/
+__pycache__/
+*.pyc
+instance/
+.pytest_cache/

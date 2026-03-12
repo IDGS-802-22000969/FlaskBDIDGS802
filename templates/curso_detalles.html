@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="flex flex-col items-center p-6 space-y-6">
+    <div class="bg-white max-w-sm w-full p-6 border border-gray-200 rounded-xl shadow-sm">
+        <div class="flex flex-col items-center">
+            <img class="w-24 h-24 mb-6 rounded-full border-2 border-blue-600"
+                 src="https://ui-avatars.com/api/?name={{ curso.nombre }}&background=0D8ABC&color=fff">
+            
+            <h5 class="text-2xl font-bold text-gray-900 text-center">{{ curso.nombre }}</h5>
+            <p class="text-gray-500 text-sm text-center mb-4">{{ curso.descripcion }}</p>
+            
+            <hr class="w-full border-gray-100 mb-4">
+            
+            <div class="text-center">
+                <p class="text-xs uppercase font-bold text-gray-400">Maestro Titular</p>
+                <p class="text-lg font-medium text-blue-700">
+                    {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}
+                </p>
+                <span class="text-sm text-gray-500 italic">{{ curso.maestro.especialidad }}</span>
+            </div>
+
+            <a href="{{ url_for('cursos.cursosTabla') }}" 
+               class="mt-6 text-white bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg transition-colors">
+                Regresar
+            </a>
+        </div>
+    </div>
+    <div class="bg-white max-w-sm w-full p-6 border border-gray-200 rounded-xl shadow-sm">
+        <h6 class="text-sm font-bold uppercase text-gray-400 mb-4">Alumnos Inscritos ({{ curso.alumnos|length }})</h6>
+        <div class="space-y-3">
+            {% for alumno in curso.alumnos %}
+            <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600">
+                    {{ alumno.nombre[0] }}{{ alumno.apaterno[0] }}
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-gray-800">{{ alumno.nombre }} {{ alumno.apaterno }}</p>
+                    <p class="text-xs text-gray-500">{{ alumno.email }}</p>
+                </div>
+            </div>
+            {% else %}
+            <p class="text-sm text-gray-400 italic text-center py-4">No hay alumnos en este curso.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

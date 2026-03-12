@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 import forms
-from models import db, Maestros
+from forms import  MaestroForm
+from models import Cursos, db, Maestros
 
 maestros = Blueprint('maestros', __name__)
 
@@ -50,12 +51,19 @@ def maestrosModificar():
         return redirect(url_for('maestros.maestroTabla'))
     return render_template("modificar_maestro.html", form=form, maestro=maestro)
 
-@maestros.route("/maestrosEliminar")
+
+@maestros.route("/maestrosEliminar", methods=["GET", "POST"])
 def maestrosEliminar():
-    matricula = int(request.args.get('matricula'))
-    maestro = Maestros.query.get(matricula)
-
-    db.session.delete(maestro)
-    db.session.commit()
-
-    return redirect(url_for('maestros.maestroTabla'))
+    matricula = request.args.get('matricula')
+    maestro = Maestros.query.get_or_404(matricula)
+    form = MaestroForm(request.form, obj=maestro)
+    if request.method == "POST":
+        cursos_asociados = Cursos.query.filter_by(maestro_id=matricula).all()
+        for curso in cursos_asociados:
+            db.session.delete(curso)
+            
+        db.session.delete(maestro)
+        db.session.commit()
+        return redirect(url_for('maestros.maestroTabla'))
+    
+    return render_template("eliminar_maestro.html", maestro=maestro, form=form)

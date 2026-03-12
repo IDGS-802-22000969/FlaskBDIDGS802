@@ -6,10 +6,14 @@ from models import db, Alumnos
 from maestros import maestros
 from maestros.routes import maestros
 from flask_migrate import Migrate
+from cursos.routes import cursos
+from inscripciones.routes import inscripciones
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 app.register_blueprint(maestros)
+app.register_blueprint(cursos)
+app.register_blueprint(inscripciones)
 
 db.init_app(app)
 migrate=Migrate(app, db)
@@ -45,16 +49,18 @@ def alumno():
 
 @app.route('/detalles', methods=['GET', 'POST'])
 def detalles():
-    alumno_class = forms.UserForm(request.form)
-    if request.method == 'GET':
-        id = request.args.get('id')
-        alumn1 = db.session.query(Alumnos).filter(Alumnos.id == id).first()
-        if alumn1:
-            nombre = alumn1.nombre
-            apaterno = alumn1.apaterno
-            email = alumn1.email
-            telefono = alumn1.telefono
-    return render_template("detalles.html", nombre=nombre, apaterno=apaterno, email=email, telefono=telefono)
+    id = request.args.get('id')
+    alumn1 = Alumnos.query.get(id)
+    if alumn1:
+        nombre = alumn1.nombre
+        apaterno = alumn1.apaterno
+        email = alumn1.email
+        telefono = alumn1.telefono
+        lista_cursos = alumn1.cursos 
+    else:
+        return redirect(url_for('index'))
+    return render_template("detalles.html", nombre=nombre, apaterno=apaterno, email=email, telefono=telefono, 
+                           cursos=lista_cursos) 
 
 @app.route("/modificar", methods=['GET', 'POST'])
 def modificar():

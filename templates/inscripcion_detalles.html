@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="flex flex-col items-center p-6 space-y-6">
+    <div class="bg-white max-w-md w-full p-8 border border-gray-200 rounded-2xl shadow-xl">
+        <div class="flex flex-col items-center">
+            
+            <div class="flex items-center justify-center space-x-4 mb-6">
+                <img class="w-16 h-16 rounded-full border-2 border-indigo-500"
+                     src="https://ui-avatars.com/api/?name={{ alumno.nombre }}+{{ alumno.apaterno }}&background=6366f1&color=fff">
+                
+                <div class="text-gray-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                </div>
+
+                <img class="w-16 h-16 rounded-full border-2 border-blue-600"
+                     src="https://ui-avatars.com/api/?name={{ curso.nombre }}&background=2563eb&color=fff">
+            </div>
+
+            <h2 class="text-2xl font-bold text-gray-900 text-center mb-1">Detalles de Inscripción</h2>
+            <p class="text-sm text-gray-500 mb-6">Registro académico UTL</p>
+
+            <div class="w-full space-y-4">
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <p class="text-xs font-bold text-indigo-600 uppercase mb-1">Estudiante</p>
+                    <p class="text-lg font-semibold text-gray-800">{{ alumno.nombre }} {{ alumno.apaterno }}</p>
+                    <p class="text-sm text-gray-600">{{ alumno.email }}</p>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-xl">
+                    <p class="text-xs font-bold text-blue-600 uppercase mb-1">Materia Inscrita</p>
+                    <p class="text-lg font-semibold text-gray-800">{{ curso.nombre }}</p>
+                    <p class="text-sm text-gray-600">Impartida por: <span class="font-medium text-blue-700">{{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}</span></p>
+                </div>
+            </div>
+
+            <div class="mt-8 flex gap-4 w-full">
+                <a href="{{ url_for('inscripciones.inscripcionesTabla') }}" 
+                   class="flex-1 text-center py-2.5 bg-gray-100 text-gray-600 font-bold rounded-lg hover:bg-gray-200 transition-colors">
+                    Volver
+                </a>
+                <a href="{{ url_for('inscripciones.inscripcionModificar', alumno_id=alumno.id, curso_id=curso.id) }}" 
+                   class="flex-1 text-center py-2.5 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors">
+                    Editar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

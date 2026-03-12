@@ -10,12 +10,6 @@
   <form action="/maestroNuevo" method="POST" novalidate class="max-w-sm mx-auto">
         {{ form.csrf_token }}
 
-     <div class="mb-5">
-            <label for="matricula" class="block mb-2.5 text-sm font-medium text-heading">Matricula</label>
-            {{ macros.campoNuevo(form.matricula, 
-            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
-        </div>
-
           <div class="mb-5">
             <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
             {{ macros.campoNuevo(form.nombre, 
